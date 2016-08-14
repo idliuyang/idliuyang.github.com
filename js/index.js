@@ -14,26 +14,32 @@ function doMove(){
 			var a=oNav.offsetLeft+aImg[0].offsetLeft+aImg[0].offsetWidth-oEvent.clientX;
 			var b=oNav.offsetTop+aImg[0].offsetTop+aImg[0].offsetHeight-oEvent.clientY;
 			var c=Math.sqrt(a*a+b*b);
-			var scale=1-c/700;
-			(scale<0.5)&&(scale=0.5);
-			aImg[0].style.height=aImg[1].style.width=128*scale+'px';
-			aImg[0].style.width=aImg[1].style.height=128*scale+'px';
+			var scale=1-c/500;
+			(scale<0.7)&&(scale=0.7);
+			aImg[0].style.height=aImg[1].style.width=100*scale+'px';
+			aImg[0].style.width=aImg[1].style.height=100*scale+'px';
 				
 			aImg[1].style.marginTop='5px';
-			aImg[1].style.WebkitTransform='scale(0.8,-0.8)';
-			aImg[1].style.WebkitMask='-webkit-linear-gradient(rgba(0,0,0,0) 70%,rgba(0,0,0,0.5))';
+			aImg[1].style.WebkitTransform='scale(1,-1)';
+			aImg[1].style.WebkitMask='-webkit-linear-gradient(rgba(0,0,0,0) 70%,rgba(0,0,0,0.4))';
+			aImg[1].style.MozTransform='scale(1,-1)';
+			aImg[1].style.MozMask='-moz-linear-gradient(rgba(0,0,0,0) 70%,rgba(0,0,0,0.4))';
+			aImg[1].style.msTransform='scale(1,-1)';
+			aImg[1].style.msMask='-ms-linear-gradient(rgba(0,0,0,0) 70%,rgba(0,0,0,0.4))';
 		}
 	};	
 }
+
 //打字机效果；
 function typeWrite(){
 	var oTxtBox=document.querySelector('.txt_box');
-	var str='  欢迎来到我的个人网站，这里面有我收集的比较好玩的各种效果，也有我的一些个人小经历，如果有您感兴趣的小效果，或者有什么需要讨论的各种效果，都可以@我下面的邮箱，或者联系我的QQ，很希望和各位同僚们沟通交流，谢谢!!';
+	var str='  欢迎来到我的个人网站，这里有我开发的比较好玩的各种效果，也有我的一些个人小经历，如果有您感兴趣的小效果，或者有什么需要讨论的各种效果，都可以@我下面的邮箱，或者联系我的QQ，很希望和各位同学们沟通交流!!';
 	var len=str.length;
 	for(var i=0;i<len;i++){
 		var oSpan=document.createElement('span');
 		
 		oSpan.innerHTML=str.charAt(i);
+		oSpan.style.color='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
 		oTxtBox.appendChild(oSpan);//把新建的元放到body里面去；	
 	}	
 	var aSpan=oTxtBox.children;
@@ -46,6 +52,7 @@ function typeWrite(){
 		if(count==aSpan.length){
 			clearInterval(timer);	
 		}
+		
 	},200);
 }
 
@@ -129,7 +136,7 @@ function toShow(){
 	};
 }
 
-//鼠标应接移入移出
+//鼠标移入移出
 function overOut(){
 	var oCwk=document.getElementById('count_wk');
 	var aLi=oCwk.children;
@@ -144,10 +151,7 @@ function overOut(){
 			move(oP, {bottom: -80, opacity: 0});
 		};
 	}
-	
 }
-
-//彩色时钟
 
 window.onload=function(){
 	toShow();	
@@ -165,11 +169,15 @@ window.onload=function(){
 	for(var i=0;i<N;i++){
 		var oS=document.createElement('span');
 		oS.style.WebkitTransform='rotate('+(i*6)+'deg)';
+		oS.style.MozTransform='rotate('+(i*6)+'deg)';
+		oS.style.msTransform='rotate('+(i*6)+'deg)';
 		if(i%5==0){
 			oS.className='big_scale';	
 			oS.innerHTML='<em>'+(i/5||12)+'<\/em>';
 			var oEm=oS.children[0];
 			oEm.style.WebkitTransform='rotate('+(-i*6)+'deg)';
+			oEm.style.Mozransform='rotate('+(-i*6)+'deg)';
+			oEm.style.msTransform='rotate('+(-i*6)+'deg)';
 		}
 		oClock.appendChild(oS);
 	}
@@ -185,6 +193,15 @@ window.onload=function(){
 		oHou.style.WebkitTransform='rotate('+(h*30+m/60*30)+'deg)';
 		oMin.style.WebkitTransform='rotate('+(m*6+s/60*6)+'deg)';
 		oSec.style.WebkitTransform='rotate('+(s*6+ms/1000*6)+'deg)';
+		
+		oHou.style.MozTransform='rotate('+(h*30+m/60*30)+'deg)';
+		oMin.style.MozTransform='rotate('+(m*6+s/60*6)+'deg)';
+		oSec.style.MozTransform='rotate('+(s*6+ms/1000*6)+'deg)';
+		
+		oHou.style.msTransform='rotate('+(h*30+m/60*30)+'deg)';
+		oMin.style.msTransform='rotate('+(m*6+s/60*6)+'deg)';
+		oSec.style.msTransform='rotate('+(s*6+ms/1000*6)+'deg)';
+		
 		oTime.innerHTML=''+toDou(h)+' : '+toDou(m)+' : '+toDou(s)+'';
 	}
 	time();
@@ -194,11 +211,13 @@ window.onload=function(){
 	var oSun=document.querySelector('.circle');
 	var oText=document.querySelector('.txt_box');
 	oSun.onmousedown=function(ev){
-		var disX=ev.pageX-oSun.offsetLeft;
-		var disY=ev.pageY-oSun.offsetTop;
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oSun.offsetLeft;
+		var disY=oEvent.clientY-oSun.offsetTop;
 		document.onmousemove=function(ev){
-			oSun.style.left=ev.pageX-oSun.offsetWidth/2+'px';	
-			oSun.style.top=ev.pageY-oSun.offsetHeight/2+'px';	
+			var oEvent=ev||event;
+			oSun.style.left=oEvent.clientX-disX+'px';	
+			oSun.style.top=oEvent.clientY-disY+'px';	
 			var x=(oText.offsetLeft+oText.offsetWidth/2)-(oSun.offsetLeft+oSun.offsetWidth/2);
 			var y=(oText.offsetTop+oText.offsetHeight/2)-(oSun.offsetTop+oSun.offsetHeight/2);
 			var dis=Math.sqrt(x*x+y*y);
