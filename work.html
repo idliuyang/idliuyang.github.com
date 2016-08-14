@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>my webset work page</title>
+<link rel="stylesheet" href="index.css" />
+<style>
+.slider .list{ width:202px; position:fixed; right:100px; top:50%; margin-top:-180px; z-index:10;}
+.slider .list li{ width:200px; height:50px; line-height:50px; border-radius:10px ; float:left; margin-top:20px; text-align:center; position:relative;  }
+/*.work .list li a{  font-weight:bold; font-family:微软雅黑; font-size:20px; background:-webkit-linear-gradient(45deg,#fff,#CCC,#CF6,#F0F,#ccc,#6F0); -webkit-background-clip:text; color:rgba(0,0,0,0); }*/
+.slider .list li a{ width:200px; height:50px; font:bold 20px/50px '微软雅黑'; position:absolute; top:0px; left:0px; text-align:center; text-shadow:2px 2px 5px #fff; color:#555; border-radius:10px; background:linear-gradient(#0EC,#C86); box-shadow:inset 0 0 10px #C0F,0 13px 0 #222; transition:0.2s all ease; }
+.slider .list li a:hover{ box-shadow:inset 0 0 30px #BF7,0 13px 0 #223; cursor:pointer;}
+.slider .list li a:active{box-shadow:inset 0 0 0 #C0F,0 5px 0 #222; margin-top:10px; }
+
+/*worklist*/
+.work_list{ width:998px;  margin:0 auto; border:1px solid #ccc; border-top:none; border-bottom:none;}
+
+/*case1 3d图片环*/
+.tph{ width:1000px; height:830px; position:relative; z-index:100;}
+.work_list h3{ 998px; height:80px;  font:bold 24px/100px '微软雅黑'; color:#fff; text-indent:1em; border-bottom:2px solid #ccc; background:#fff;  background:-webkit-linear-gradient(45deg,#fff,#666,#663,#6F9,#ccc,#9CF);}
+.roll{ width:133px; height:200px;  position:absolute; top:50%; left:50%; margin-top:-240px; margin-left:-67px; -webkit-transform-style:preserve-3d; -webkit-transform:perspective(800px) rotateY(0deg); -webkit-transition:5s all ease; }
+.roll li{ width:100%; height:100%; position:absolute; top:0; left:0; -webkit-transform:rotateY(0deg) translateZ(0px); box-shadow:0 0 1px 2px #fff; border-radius:10px; }
+.roll li img{ box-shadow:0 0 10px 20px red inset; position:absolute; top:0; left:0; border-radius:10px; }
+.roll:active{ -webkit-transform:perspective(800px) rotateY(360deg) ; }
+
+/*case2 翻书效果*/
+.page_turn{ width:998px; height:500px; position:relative; margin-top:-200px; }
+.page_turn .box{ width:700px; height:400px; background:url(images/img/1.jpg) no-repeat; position:relative; margin:10px auto;  }
+.page_turn .page{ width:50%; height:100%; background:#ccc; position:absolute; top:0; right:0; -webkit-transform:perspective(800px) rotateY(0deg); -webkit-transform-style:preserve-3d; z-index:2; -webkit-transform-origin:left;}
+.page_turn .page div{ position:absolute; top:0; left:0; width:100%; height:100%; }
+.page_turn .page .front{ background:url(images/img/1.jpg) no-repeat right; -webkit-transform:translateZ(1px);}
+.page_turn .page .back{ background:url(images/img/2.jpg) no-repeat; -webkit-transform:translateZ(-1px) scale(-1,1);}
+.page_turn .page2{ width:50%; height:100%; background:url(images/img/2.jpg) no-repeat right; z-index:1; position:absolute; top:0; right:0;}
+/*case3 爆炸效果*/
+.boom{ width:100%; height:500px;}
+.boom .box{ width:700px; height:400px; margin:10px auto; position:relative; background:url(images/img/2.jpg) no-repeat ;}
+.boom .box span{ position:absolute; top:0; left:0; background:url(images/img/1.jpg) no-repeat;}
+/*穿墙效果*/
+.through{ width:1000px; height:1080px; }
+.th_list{ width:1000px; height:1000px; margin:0px auto;}
+.th_list li{ float:left; width:240px; height:240px; margin:5px; position:relative; overflow:hidden; }
+.th_list li span{width:100%;height:100%; background:red; opacity:.3; position:absolute;left:-240px; top:0; }
+</style>
+
+</head>
+
+<body>
+<div class="my_web">
+	<div class="header c clear">
+    	<h1 class="logo fl">ocean</h1>
+       	<a href="index.html" id="show" class="show fr">效果展示</a>
+        <a href="mine.html" class="fr mine">自我介绍</a>
+    </div>
+
+	<div class="slider">
+        <ul class="list clear">
+        	<li><a href="#tph">case1:图片环</a></li>
+           	<li><a href="#page_turn">case2:翻书效果</a></li> 
+            <li><a href="#boom">case3:爆炸效果</a></li>
+        	<li><a href="#through">case4:穿墙效果</a></li>
+        	<li><a href="javascript:;">case5:展示效果</a></li>
+        	<li><a href="">返回顶部</a></li>
+        </ul>
+    </div>
+    <div class="nav" id="nav">
+    	<a href="index.html" ><img src="images/mac/2.png"></a>
+    	<a href="life.html" ><img src="images/mac/3.png"></a>
+    	<a href="work.html" ><img src="images/mac/5.png"></a>
+    	<a href="mine.html" ><img src="images/mac/4.png"></a>
+    	<a href="http://home.cnblogs.com/" ><img src="images/mac/1.png"></a>
+    </div>
+    <script src="js/move.js"></script>
+	<script src="js/work.js"></script>
+  
+    <ul class="work_list">
+        <li class="tph" id="tph">
+        	<h3 class="tph_head">case1:3D图片环-采用CSS3效果实现</h3>
+            <ul class="roll">
+                <li><img src="images/img2/1.jpg"></li>
+                <li><img src="images/img2/2.jpg"></li>
+                <li><img src="images/img2/3.jpg"></li>
+                <li><img src="images/img2/4.jpg"></li>
+                <li><img src="images/img2/5.jpg"></li>
+                <li><img src="images/img2/6.jpg"></li>
+                <li><img src="images/img2/7.jpg"></li>
+                <li><img src="images/img2/8.jpg"></li>
+                <li><img src="images/img2/9.jpg"></li>
+                <li><img src="images/img2/10.jpg"></li>
+                <li><img src="images/img2/11.jpg"></li>
+            </ul>
+        </li>
+        <li class="page_turn" id="page_turn">
+        	<h3 class="page_head">case2:模拟翻书效果</h3>
+            <div class="box">
+                <div class="page">
+                    <div class="front"></div>
+                    <div class="back"></div>
+                </div>
+                <div class="page2"></div>
+            </div>
+        </li>
+        
+        <li class="boom" id="boom">
+        	<h3 class="boom_head">case3:图片爆炸效果</h3>
+        	<div class="box"></div>
+        </li>
+        <li class="through" id="through" >
+        	<h3 class="through_head">case4:穿墙效果</h3>
+            <ul class="clear th_list" id="th_list">
+				<li style="background:url(images/img3/1.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/2.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/3.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/4.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/5.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/6.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/7.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/8.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/9.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/10.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/11.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/12.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/13.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/14.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/15.png) no-repeat"><span></span></li>
+				<li style="background:url(images/img3/16.png) no-repeat"><span></span></li>
+			</ul>
+        </li>
+        
+    </ul>
+    <div class="footer c clear">
+    	<span class="fl mail"><i class="icon1"></i>邮箱：hkccly2@sina.com</span>
+    	<span class="fl boke"><i class="icon2"></i>博客：hkccly@126.com</span>
+        <span class="fr qq"><i class="icon3"></i>QQ:812060230</span>
+    </div>
+
+   
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
